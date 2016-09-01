@@ -16,15 +16,15 @@ import java.util.List;
 public class StudentDaoImpl implements StudentDAO {
     @Override
     public List<StudentEntity> queryAllStudents() {
-        Transaction transaction=null;
-        List<StudentEntity> studentEntities=null;
-        String hql="";
+        Transaction transaction = null;
+        List<StudentEntity> studentEntities = null;
+        String hql = "";
         try {
-            Session session= MyHibernateSeesionFactory.getinstance().openSession();
-            transaction=session.beginTransaction();
-            hql="from StudentEntity ";
-            Query query=session.createQuery(hql);
-            studentEntities=query.list();
+            Session session = MyHibernateSeesionFactory.getinstance().openSession();
+            transaction = session.beginTransaction();
+            hql = "from StudentEntity ";
+            Query query = session.createQuery(hql);
+            studentEntities = query.list();
             transaction.commit();
             return studentEntities;
         } catch (HibernateException e) {
@@ -32,21 +32,21 @@ public class StudentDaoImpl implements StudentDAO {
             transaction.commit();
             return studentEntities;
         } finally {
-            if (transaction!=null){
-                transaction=null;
+            if (transaction != null) {
+                transaction = null;
             }
         }
     }
 
     @Override
     public StudentEntity queryStudentBysid(int sid) {
-        Transaction transaction=null;
+        Transaction transaction = null;
         String hql;
-        Session session=MyHibernateSeesionFactory.getinstance().openSession();
-         transaction = session.beginTransaction();
-        hql="from StudentEntity  where sid=?";
+        Session session = MyHibernateSeesionFactory.getinstance().openSession();
+        transaction = session.beginTransaction();
+        hql = "from StudentEntity  where sid=?";
         Query query = session.createQuery(hql);
-        query.setParameter(0,sid);
+        query.setParameter(0, sid);
 //        query.
         return null;
     }
@@ -61,8 +61,31 @@ public class StudentDaoImpl implements StudentDAO {
         return false;
     }
 
+    /**
+     * 删除学生
+     *
+     * @param sid
+     * @return
+     */
     @Override
     public boolean deleteStudent(int sid) {
+        Transaction transaction = null;
+        try {
+
+            Session session = MyHibernateSeesionFactory.getinstance().openSession();
+            transaction = session.beginTransaction();
+            Object o = session.get(StudentEntity.class, sid);
+            session.delete(o);
+            transaction.commit();
+            return true;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            transaction.commit();
+        } finally {
+            if (transaction != null) {
+                transaction = null;
+            }
+        }
         return false;
     }
 }

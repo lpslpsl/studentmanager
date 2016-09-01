@@ -1,5 +1,6 @@
 package test.action; 
 
+import org.junit.Assert;
 import serviceimpl.StudentDaoImpl;
 import org.junit.Test;
 import org.junit.Before; 
@@ -71,7 +72,10 @@ public void testUpdateStudent() throws Exception {
 */ 
 @Test
 public void testDeleteStudent() throws Exception { 
-//TODO: Test goes here... 
+StudentDAO studentDAO=new StudentDaoImpl();
+    boolean b = studentDAO.deleteStudent(6);
+    Assert.assertEquals(true,b);
+
 } 
 
 

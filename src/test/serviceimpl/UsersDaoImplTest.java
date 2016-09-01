@@ -48,9 +48,9 @@ public void testUserLogin() throws Exception {
     @Test
     public void addStudent(){
         StudentEntity studentEntity=new StudentEntity();
-        studentEntity.setSname("张三");
+        studentEntity.setSname("李s四asadf");
         studentEntity.setGender(0);
-        studentEntity.setBirthday(new Date(2012,10,25));
+        studentEntity.setBirthday(new Date(1993,10,25));
         studentEntity.setAddress("四川巴中");
         Session session= MyHibernateSeesionFactory.getinstance().openSession();
         Transaction transaction=session.beginTransaction();
