@@ -1,0 +1,2 @@
+# studentmanager
+strtus+hibnate
