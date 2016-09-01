@@ -120,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td><s:property value="#stu.gender"/></td>
 		<td><s:date name="#stu.birthday" format="yyyy年MM月dd日"/></td>
 		<td><s:property value="#stu.address"/></td>
-		<td><a href="<%=path%>/students/Students_delete.action?sid=<s:property value="#stu.sid"/>" onclick="javascript: return confirm('真的要删除吗？');">删除</a></td>
+		<td><a href="<%=path%>/students/delete.action?sid=<s:property value="#stu.sid"/>" onclick="javascript: return confirm('真的要删除吗？');">删除</a></td>
 	</tr>
 	</s:iterator>
 	<!-- 遍历结束 -->
