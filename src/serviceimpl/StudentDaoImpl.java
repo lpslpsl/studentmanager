@@ -51,14 +51,51 @@ public class StudentDaoImpl implements StudentDAO {
         return null;
     }
 
+    /**
+     * 添加学生
+     * @param studentEntity
+     * @return
+     */
     @Override
     public boolean addStudent(StudentEntity studentEntity) {
-        return false;
+        Transaction transaction=null;
+        try {
+            Session session=MyHibernateSeesionFactory.getinstance().openSession();
+           transaction= session.beginTransaction();
+            session.save(studentEntity);
+            transaction.commit();
+            return true;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            transaction.commit();
+            return false;
+        } finally {
+            if (transaction!=null){
+                transaction=null;
+            }
+        }
     }
 
     @Override
     public boolean updateStudent(StudentEntity studentEntity) {
-        return false;
+        Transaction transaction=null;
+        try {
+            Session session=MyHibernateSeesionFactory.getinstance().openSession();
+            transaction=session.beginTransaction();
+            session.update(studentEntity);
+            transaction.commit();
+            return true;
+        } catch (HibernateException e) {
+            transaction.commit();
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (transaction!=null){
+                transaction=null;
+            }
+        }
+
+
     }
 
     /**

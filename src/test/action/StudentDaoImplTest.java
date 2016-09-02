@@ -1,11 +1,14 @@
 package test.action; 
 
+import entity.StudentEntity;
 import org.junit.Assert;
 import serviceimpl.StudentDaoImpl;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
 import service.StudentDAO;
+
+import java.sql.Date;
 
 /** 
 * StudentDaoImpl Tester. 
@@ -51,8 +54,15 @@ public void testQueryStudentBysid() throws Exception {
 * 
 */ 
 @Test
-public void testAddStudent() throws Exception { 
-//TODO: Test goes here... 
+public void testAddStudent() throws Exception {
+    StudentEntity studentEntity=new StudentEntity();
+    studentEntity.setSname("李s四asadf");
+    studentEntity.setGender(0);
+    studentEntity.setBirthday(new Date(12,3,5));
+    studentEntity.setAddress("四川巴中");
+    StudentDAO studentDAO=new StudentDaoImpl();
+
+    Assert.assertEquals(true,    studentDAO.addStudent(studentEntity));
 } 
 
 /** 
@@ -61,8 +71,16 @@ public void testAddStudent() throws Exception {
 * 
 */ 
 @Test
-public void testUpdateStudent() throws Exception { 
-//TODO: Test goes here... 
+public void testUpdateStudent() throws Exception {
+    StudentEntity studentEntity=new StudentEntity();
+    studentEntity.setSname("李s四adf");
+    studentEntity.setSid(5);
+    studentEntity.setGender(0);
+    studentEntity.setBirthday(new Date(12,3,5));
+    studentEntity.setAddress("四川巴中");
+    StudentDAO studentDAO=new StudentDaoImpl();
+
+    Assert.assertEquals(true,    studentDAO.updateStudent(studentEntity));
 } 
 
 /** 
